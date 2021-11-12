@@ -38,12 +38,12 @@ public class CameraMovement : MonoBehaviour
         crouchPosition = new Vector3(0.0f, crouchingYPosition, 0.0f); ;
         Vector3 positionAtTheTime = new Vector3(0.0f, transform.localPosition.y, 0.0f);
         if (player.isCrouching || player.IsBelowObject()) {
-            Debug.Log("[CROUCHING]...");
+            Debug.Log("[CROUCHING]");
             mainCamera.transform.localPosition = Vector3.Lerp(positionAtTheTime, crouchPosition, crouchMultiplier * Time.deltaTime);
         }
         else {
             if (mainCamera.transform.localPosition != placeholderPosition) {
-                Debug.Log("NOT IN THE RIGHT POSITION");
+                Debug.Log("[STANDING]");
                 mainCamera.transform.localPosition = Vector3.Lerp(mainCamera.transform.localPosition, placeholderPosition, crouchMultiplier * Time.deltaTime);
             }
         }

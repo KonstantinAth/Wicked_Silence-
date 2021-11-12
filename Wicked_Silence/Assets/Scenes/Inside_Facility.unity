@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 138793643}
   - component: {fileID: 138793642}
   m_Layer: 6
-  m_Name: Cube (1)
+  m_Name: Below_Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -442,6 +442,7 @@ MonoBehaviour:
   runSpeed: 10
   crouchControllerCenter: {x: 0, y: -0.5, z: 0}
   crouchControllerHeight: 1
+  crouchLerp: 5
   maxDistance: 2
   belowObjectLayerMask:
     serializedVersion: 2
@@ -454,7 +455,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712519012}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

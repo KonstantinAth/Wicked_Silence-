@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Character Controller Configs")]
     [SerializeField] Vector3 crouchControllerCenter;
     [SerializeField] float crouchControllerHeight;
+    [SerializeField] float crouchLerp = 5.0f;
     //Raycast info...
     [Header("Raycast Info")]
-    Ray ray;
     [SerializeField] float maxDistance = 2.0f;
     [SerializeField] LayerMask belowObjectLayerMask;
+    Ray ray;
     //Input floats
     float XInput;
     float ZInput;
@@ -44,7 +45,6 @@ public class PlayerMovement : MonoBehaviour {
     void Movement() {
         //Change move speed if player input's the LSHift Key...
         if (IsRunning) {
-            Debug.Log("RUNNING");
             playerController.Move(direction * runSpeed * Time.deltaTime);
         }
         else {
@@ -63,16 +63,16 @@ public class PlayerMovement : MonoBehaviour {
     void Crouching() {
         isCrouching = Input.GetKey(KeyCode.LeftControl);
         if(isCrouching || IsBelowObject()) {
-            playerController.height = crouchControllerHeight;
-            playerController.center = crouchControllerCenter;
+            playerController.height = Mathf.Lerp(playerController.height, crouchControllerHeight, crouchLerp * Time.deltaTime);
+            playerController.center = Vector3.Lerp(playerController.center, crouchControllerCenter, crouchLerp * Time.deltaTime);
         }
         else {
-            playerController.height = originalControllerHeight;
-            playerController.center = originalControllerCenter;
+            playerController.height = Mathf.Lerp(playerController.height, originalControllerHeight, crouchLerp * Time.deltaTime);
+            playerController.center = Vector3.Lerp(playerController.center, originalControllerCenter, crouchLerp * Time.deltaTime);
         }
     }
     public bool IsBelowObject() {
-        Ray ray = new Ray(transform.position, Vector3.up);
+        ray = new Ray(transform.position, Vector3.up);
         bool belowObject = Physics.Raycast(ray, maxDistance, belowObjectLayerMask);
         if(belowObject) {
             return true;
@@ -80,5 +80,10 @@ public class PlayerMovement : MonoBehaviour {
         else {
             return false;
         }
+    }
+    private void OnDrawGizmos() {
+        ray = new Ray(transform.position, Vector3.up);
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(ray);
     }
 }
