@@ -6,14 +6,15 @@ public class PlayerHiding : MonoBehaviour
 {
     [SerializeField] float maxDetectionDistance;
     [SerializeField] LayerMask hideableObjectLayerMask;
+    [SerializeField] UIManager uiManager;
     public bool detectedHideableObject;
     public bool playerWantsToHide; 
     Ray ray;
     RaycastHit hit;
     GameObject hitResult;
+    public bool hiding = false;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         
     }
     // Update is called once per frame
@@ -25,15 +26,22 @@ public class PlayerHiding : MonoBehaviour
         ray = new Ray(transform.position, transform.forward);
         detectedHideableObject = Physics.Raycast(ray, out hit, maxDetectionDistance, hideableObjectLayerMask);
         if(detectedHideableObject) {
+            uiManager.SetCanvasState(true);
             hitResult = hit.rigidbody.gameObject;
+            uiManager.SetTextBox(hitResult.GetComponent<Closet>().objectData.name);
             if (playerWantsToHide) {
                 if(!hitResult.GetComponent<IHideable>().IsHiding()) {
+                    hiding = true;
                     hitResult.GetComponent<IHideable>().Hide();
                 }
                 else {
+                    hiding = false;
                     hitResult.GetComponent<IHideable>().ExitHide();
                 }
             }
+        }
+        else {
+            uiManager.SetCanvasState(false);
         }
     }
     public string ReturnObjectType() {

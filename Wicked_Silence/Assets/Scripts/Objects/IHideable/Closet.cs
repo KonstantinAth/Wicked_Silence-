@@ -9,6 +9,7 @@ public class Closet : MonoBehaviour, IHideable {
         public bool IsHiding;
     }
     public HideableObjectData objectData;
+    [SerializeField] PlayerMovement player;
     private void OnEnable() {
         objectData.IsHiding = false;
     }
@@ -18,10 +19,12 @@ public class Closet : MonoBehaviour, IHideable {
     }
     public void Hide() {
         objectData.IsHiding = true;
+        player.detectionLevel = PlayerMovement.DetectionLevel.unDetectable;
         Debug.Log("[HIDING]...");
     }
     public void ExitHide() {
         objectData.IsHiding = false;
+        player.detectionLevel = PlayerMovement.DetectionLevel.mediumDiscretion;
         Debug.Log("[STOPPED HIDING]...");
     }
     public bool IsHiding() {

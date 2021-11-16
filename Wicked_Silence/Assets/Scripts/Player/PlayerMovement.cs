@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour {
     //Holding the object's original Scale...
     float originalControllerHeight;
     Vector3 originalControllerCenter;
+    PlayerHiding playerHiding;
     #endregion
     #region Unity Default Methods
     // Start is called before the first frame update
@@ -59,9 +60,11 @@ public class PlayerMovement : MonoBehaviour {
     }
     // Update is called once per frame
     void Update() {
-        Inputs();
-        Movement();
-        Crouching();
+        if (!playerHiding.hiding) {
+            Inputs();
+            Movement();
+            Crouching();
+        }
     }
     private void FixedUpdate() {
         ApplyGravity();
@@ -69,8 +72,9 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
     #region Initialization
     void Init() {
-        //Initializing character controller
+        //Initializing player components...
         playerController = GetComponent<CharacterController>();
+        playerHiding = GetComponent<PlayerHiding>();
         //Initializing object's original Controller Configs...
         originalControllerHeight = playerController.height;
         originalControllerCenter = playerController.center;
