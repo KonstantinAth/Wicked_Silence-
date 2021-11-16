@@ -1,6 +1,7 @@
 using UnityEngine;
+using FMODUnity;
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(StudioEventEmitter))]
 public class PlayerMovement : MonoBehaviour {
     #region Store Player's Detection States/Level
     //Store Player's Detection States/Level
