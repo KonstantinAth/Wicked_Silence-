@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Fmod/Wicked_Silence_AudioProject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637726814081904821
+  lastModified: 637728419393416380
   FileSizes:
   - Name: Desktop
     Value: 1012
@@ -41,7 +41,7 @@ MonoBehaviour:
   - {fileID: -9112415308409903904}
   StringsBanks:
   - {fileID: 9051494184129396916}
-  stringsBankWriteTime: 637726814081924822
+  stringsBankWriteTime: 637728419393446403
   cacheVersion: 8
 --- !u!114 &9051494184129396916
 MonoBehaviour:
@@ -58,7 +58,7 @@ MonoBehaviour:
   Path: ../Fmod/Wicked_Silence_AudioProject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637726814081924822
+  lastModified: 637728419393446403
   FileSizes:
   - Name: Desktop
     Value: 700
