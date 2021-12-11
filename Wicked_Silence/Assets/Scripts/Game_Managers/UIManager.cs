@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 public class UIManager : MonoBehaviour {
+    void Start()
+    {
+        MainCanvas.SetActive(false);
+        InitDictionary();
+    }
+    #region HideableObjects UI Management
     [System.Serializable]
     public struct InstructionData {
         public string instuctionName;
@@ -14,10 +20,7 @@ public class UIManager : MonoBehaviour {
     public GameObject MainCanvas;
     public TextMeshProUGUI MainTextBox;
     // Start is called before the first frame update
-    void Start() {
-        MainCanvas.SetActive(false);
-        InitDictionary();
-    }
+   
     public void InitDictionary() {
         for (int i = 0; i < instructionDataToFeed.Length; i++) {
             instructionData.Add(instructionDataToFeed[i].instuctionName, instructionDataToFeed[i]);
@@ -33,4 +36,8 @@ public class UIManager : MonoBehaviour {
             }
         }
     }
+    #endregion
+    #region PickableObject UI Management
+
+    #endregion
 }

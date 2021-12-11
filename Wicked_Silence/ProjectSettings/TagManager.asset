@@ -14,8 +14,8 @@ TagManager:
   - HideBelow
   - Ground
   - Hideable_Object
-  - 
-  - 
+  - Pickable_Object
+  - Voice_Interactable
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Environment
+    uniqueID: 1127903125
+    locked: 0
+  - name: UI
+    uniqueID: 238159605
     locked: 0
