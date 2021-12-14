@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 //FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 public class MicrophoneInput : MonoBehaviour {
     #region Singleton
     public static MicrophoneInput _instance;
+    void Awake() { _instance = this; }
     public static MicrophoneInput GetInstance() { return _instance; }
     #endregion
     public static Vector3 LastKnownPosition;
@@ -25,7 +24,7 @@ public class MicrophoneInput : MonoBehaviour {
     int initialSamples = 128;
     void InitializeMic() {
         _micDevice = Microphone.devices[0];
-        audioSource.clip = Microphone.Start(_micDevice, true, 2, frequency);
+        audioSource.clip = Microphone.Start(_micDevice, true, 1, frequency);
         _clipRecord = audioSource.clip; 
         _IsInitialized = true;
     }
@@ -54,7 +53,6 @@ public class MicrophoneInput : MonoBehaviour {
         float db = 20 * Mathf.Log10(Mathf.Abs(MicLoudness));
         return db;
     }
-
     public float FloatLinearOfClip(AudioClip clip) {
         StopMic();
         _recordedClip = clip;
@@ -99,13 +97,8 @@ public class MicrophoneInput : MonoBehaviour {
         }
     }
     #region Unity Methods & Calls
-    void Awake() { _instance = this; }
     // start mic when scene starts
-    void OnEnable() {
-        InitializeMic();
-        _IsInitialized = true;
-    }
-
+    void OnEnable() { InitializeMic(); }
     // Update is called once per frame
     void Update() {
         // levelMax equals to the highest normalized value power 2, a small number because < 1
@@ -118,14 +111,8 @@ public class MicrophoneInput : MonoBehaviour {
         //Debug.Log($"MicLoudness {MicLoudness}");
     }
     //stop mic when loading a new level or quit application
-    void OnDisable()
-    {
-        StopMic();
-    }
-    void OnDestroy()
-    {
-        StopMic();
-    }
+    void OnDisable() { StopMic(); }
+    void OnDestroy() { StopMic(); }
     // make sure the mic gets started & stopped when application gets focused
     void OnApplicationFocus(bool focus) {
         if (focus) {
