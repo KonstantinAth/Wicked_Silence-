@@ -7,7 +7,7 @@ public class GoToDestinationChaseAction : Node  {
     public override NodeState Evaluate() {
         Debug.Log("EVALUATING => [GO TO DESTINATION ACTION]");
         //Get the destination point data...
-        object destinationPoint = GetData("Destination");
+        object destinationPoint = GetData("PlayerDestination");
         Debug.Log($"DESTINATION POINT => {destinationPoint}");
         //If we have stored a destination point..
         if (destinationPoint != null) {
@@ -24,7 +24,7 @@ public class GoToDestinationChaseAction : Node  {
             {
                 Debug.Log("[GO TO DITSANCE ACTION] => SUCCEEDED");
                 //I PROBABLY GONNA DELETE THIS... 
-                Parent.ClearData("Destination");
+                Parent.ClearData("PlayerDestination");
                 _state = NodeState.SUCCEEDED;
                 return _state;
             }

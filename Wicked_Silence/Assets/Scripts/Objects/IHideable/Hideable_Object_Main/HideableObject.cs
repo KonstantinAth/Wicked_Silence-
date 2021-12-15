@@ -111,7 +111,7 @@ public class HideableObject : MonoBehaviour, IHideable {
     }
     public virtual void Hide() {
         hideableObjectData.IsHiding = true;
-        player.detectionLevel = PlayerMovement.DetectionLevel.unDetectable;
+        player.detectionLevel = PlayerMovement.DetectionLevel.UNDETECTABLE;
         CameraActivation(hideableObjectData.IsHiding);
         Debug.Log($"[HIDING IN {hideableObjectData.name}]...");
     }
@@ -119,7 +119,7 @@ public class HideableObject : MonoBehaviour, IHideable {
     public virtual void ExitHide()
     {
         hideableObjectData.IsHiding = false;
-        player.detectionLevel = PlayerMovement.DetectionLevel.mediumDiscretion;
+        player.detectionLevel = PlayerMovement.DetectionLevel.MEDIUMDISCRETION;
         CameraActivation(hideableObjectData.IsHiding);
         Debug.Log("[STOPPED HIDING]...");
     }

@@ -1,17 +1,12 @@
 using UnityEngine;
 //FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
 public class MicrophoneInput : MonoBehaviour {
-    #region Singleton
-    public static MicrophoneInput _instance;
-    void Awake() { _instance = this; }
-    public static MicrophoneInput GetInstance() { return _instance; }
-    #endregion
-    public static Vector3 LastKnownPosition;
-    public static bool HasLastKnowPosition() => LastKnownPosition != null ? true : false;
-    public static float MicLoudness;
-    public static float MicLoudnessDecibels;
-    public static bool _IsInitialized;
-    public static bool JustGotLoud = false;
+    public Vector3 LastKnownPosition;
+    public bool HasLastKnowPosition() => LastKnownPosition != null ? true : false;
+    public float MicLoudness;
+    public float MicLoudnessDecibels;
+    public bool _IsInitialized;
+    public bool JustGotLoud = false;
     public bool GotLoud;
     private string _micDevice;
     private int frequency = 44100;
@@ -24,7 +19,7 @@ public class MicrophoneInput : MonoBehaviour {
     int initialSamples = 128;
     void InitializeMic() {
         _micDevice = Microphone.devices[0];
-        audioSource.clip = Microphone.Start(_micDevice, true, 1, frequency);
+        audioSource.clip = Microphone.Start(_micDevice, true, 2, frequency);
         _clipRecord = audioSource.clip; 
         _IsInitialized = true;
     }

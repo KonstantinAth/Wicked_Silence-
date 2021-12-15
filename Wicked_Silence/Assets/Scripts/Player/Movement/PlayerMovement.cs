@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour {
     #region Store Player's Detection States/Level
     //Store Player's Detection States/Level
     public enum DetectionLevel {
-        unDetectable = 0,
-        discrete = 1,
-        mediumDiscretion = 2,
-        loud = 3
+        UNDETECTABLE = 0,
+        DISCRETE = 1,
+        MEDIUMDISCRETION= 2,
+        LOUD = 3
     }
     #endregion
     #region Initialization Variables Organized Under A Header
@@ -36,10 +36,10 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 velocity;
     [Tooltip("Detection Level changes based upon the noise the player makes ")]
     [Header("Detection Level & Data")]
-    public DetectionLevel detectionLevel = DetectionLevel.discrete;
+    public DetectionLevel detectionLevel = DetectionLevel.DISCRETE;
     public bool JustGotLoud = false;
     #region Last Known Position 
-    public static Vector3 LastKnownPosition;
+    public Vector3 LastKnownPosition;
     public bool HasLastKnowPosition() => LastKnownPosition != null ? true : false;
     #endregion 
     Ray ray;
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
     void Movement() {
         //Change move speed if player input's the LSHift Key...
         if (IsRunning) {
-            detectionLevel = DetectionLevel.loud;
+            detectionLevel = DetectionLevel.LOUD;
             playerController.Move(direction * runSpeed * Time.deltaTime);
             if(!JustGotLoud) {
                 LastKnownPosition = transform.position;
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else {
             JustGotLoud = false;
-            detectionLevel = DetectionLevel.mediumDiscretion;
+            detectionLevel = DetectionLevel.MEDIUMDISCRETION;
             playerController.Move(direction * moveSpeed * Time.deltaTime);
         }
     }
@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour {
     void Crouching() {
         isCrouching = Input.GetKey(KeyCode.LeftControl);
         if(isCrouching || IsBelowObject()) {
-            detectionLevel = DetectionLevel.discrete;
+            detectionLevel = DetectionLevel.DISCRETE;
             playerController.height = Mathf.Lerp(playerController.height, crouchControllerHeight, crouchLerp * Time.deltaTime);
             playerController.center = Vector3.Lerp(playerController.center, crouchControllerCenter, crouchLerp * Time.deltaTime);
         }

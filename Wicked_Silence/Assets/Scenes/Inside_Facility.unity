@@ -1100,6 +1100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5e4b5169b88db49845981490cefd9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 712519013}
+  micInput: {fileID: 1637439276}
 --- !u!4 &303652088
 Transform:
   m_ObjectHideFlags: 0
@@ -3384,6 +3386,7 @@ MonoBehaviour:
   mass: 1
   detectionLevel: 1
   JustGotLoud: 0
+  LastKnownPosition: {x: 0, y: 0, z: 0}
   isWalking: 0
   isCrouching: 0
 --- !u!23 &712519014
@@ -4993,8 +4996,8 @@ MonoBehaviour:
   confidenceLevel: 2
   keywordsToFeed:
   - Wait
-  - 'Open '
-  - One
+  - Open Door
+  - One Two Three Four Six Seven
   wordSpoken: 
 --- !u!1 &1513664961
 GameObject:
@@ -5174,6 +5177,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117b54d06a8e5db429f0c9a6dc5b48ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LastKnownPosition: {x: 0, y: 0, z: 0}
+  MicLoudness: 0
+  MicLoudnessDecibels: 0
+  _IsInitialized: 0
+  JustGotLoud: 0
   GotLoud: 0
   audioSource: {fileID: 1637439277}
   detectableDBValue: -40
