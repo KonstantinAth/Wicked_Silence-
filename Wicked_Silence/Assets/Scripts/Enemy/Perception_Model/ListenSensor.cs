@@ -2,7 +2,7 @@ using UnityEngine;
 using BehaviourTree;
 //Listen Sensor's job is to look & "sense" for the player & give away the player's position...
 public class ListenSensor : Node, ISensor {
-    private bool detected = false;
+    public static bool detected = false;
     private bool resetted = false;
     Vector3 currentTransform;
     private float MinDistanceBetween;

@@ -2,15 +2,19 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using BehaviourTree;
+using FMODUnity;
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(StudioEventEmitter))]
 public class EnemyBehaviour : NodeTree {
     NavMeshAgent agent;
     [SerializeField] float m_Range;
+    [Header("Enemy Sensor Configs")]
     [SerializeField] private float minDistanceBetween = 50.0f;
     [SerializeField] private float minInvestigationDistance = 40.0f;
-    [SerializeField] private float minChaseDistance = 30.0f;
     [SerializeField] private float minCaughtPlayerDistance = 10.0f;
+    [Tooltip("Microphone Input, Volume & DB Minimum Levels")]
     [SerializeField] private float minInvestigateDBLevel = -60.0f;
+    [Tooltip("Microphone Input, Volume & DB Minimum Levels")]
     [SerializeField] private float minChaseDBLevel = -40.0f;
     public override void Initialize()  {
         agent = GetComponent<NavMeshAgent>();
