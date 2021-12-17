@@ -1,4 +1,5 @@
 using UnityEngine;
+using BehaviourTree;
 public class GameManager : MonoBehaviour {
     #region Singleton
     public static GameManager _instance;

@@ -23,15 +23,16 @@ namespace BehaviourTree {
                     }
                     //If a child is running continue until it has succeeded...
                     case NodeState.RUNNING: {
-                            Debug.Log("SEQUENCER RUNNING");
-                            isAnyChildRunning = true;
-                        continue;
+                        Debug.Log("SEQUENCER RUNNING");
+                        isAnyChildRunning = true;
+                        break;
                     }
                     //If the child succeeded declare it & return it... 
                     case NodeState.SUCCEEDED: {
-                            Debug.Log("SEQUENCER SUCCEEDED");
-                            _state = NodeState.SUCCEEDED;
-                        return _state;
+                        break;
+                    }
+                    default: {
+                        break;
                     }
                 }
             }

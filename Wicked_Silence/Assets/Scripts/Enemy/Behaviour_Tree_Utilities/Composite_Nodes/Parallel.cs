@@ -16,13 +16,11 @@ namespace BehaviourTree {
                     //If failed increase the children that have been failed...
                     case NodeState.FAILED: {
                         failedChildren++;
-                            Debug.Log($"FAILED CHILDREN {failedChildren}");
                         continue;
                     }
                     //Continue if succeeded..
                     case NodeState.SUCCEEDED: {
-                            Debug.Log($"PARALLEL SUCCEEDED");
-                            continue;
+                        continue;
                     }
                     //There is a child running...
                     case NodeState.RUNNING: {
@@ -39,9 +37,16 @@ namespace BehaviourTree {
                 }
             }
             //If all children failedm, we failed...
-            if (failedChildren == children.Count) { _state = NodeState.FAILED; }
+            if (failedChildren == children.Count) {
+                Debug.Log($"PARALLEL FAILED");
+                Debug.Log($"FAILED CHILDREN {failedChildren}");
+                _state = NodeState.FAILED;
+            }
             //If there is any child running the child's state is running, else it has succeeded (because we are not processing it anymore)...
-            else { _state = isAnyChildRunning ? NodeState.RUNNING : NodeState.SUCCEEDED; }
+            else {
+                Debug.Log($"PARALLEL SUCCEEDED");
+                _state = isAnyChildRunning ? NodeState.RUNNING : NodeState.SUCCEEDED; 
+            }
             Debug.Log($"PARALLEL NODE STATE => {_state}");
             return _state;
         }

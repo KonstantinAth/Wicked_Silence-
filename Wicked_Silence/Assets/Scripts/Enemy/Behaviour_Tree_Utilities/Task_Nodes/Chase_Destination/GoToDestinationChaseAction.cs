@@ -4,6 +4,7 @@ using BehaviourTree;
 public class GoToDestinationChaseAction : Node  {
     NavMeshAgent agent;
     public GoToDestinationChaseAction(NavMeshAgent agent) : base() { this.agent = agent; }
+    #region Move Agent To The Player's Position / Chase Player
     public override NodeState Evaluate() {
         Debug.Log("EVALUATING => [GO TO DESTINATION ACTION]");
         //Get the destination point data...
@@ -22,16 +23,19 @@ public class GoToDestinationChaseAction : Node  {
             float distanceFromTarget = Vector3.Distance(agent.transform.position, agent.destination);
             if (distanceFromTarget <= agent.stoppingDistance || agent.velocity.sqrMagnitude <= 0)
             {
-                Debug.Log("[GO TO DITSANCE ACTION] => SUCCEEDED");
+                Debug.Log("[GO TO DESTINATION ACTION] => SUCCEEDED");
                 //I PROBABLY GONNA DELETE THIS... 
                 Parent.ClearData("PlayerDestination");
+                Debug.Log("CLEARED DATA FOR : => Player Destination");
                 _state = NodeState.SUCCEEDED;
                 return _state;
             }
         }
-        Debug.Log("[GO TO DITSANCE ACTION] => RUNNING");
+        //IT MIGHT NEED TO TURN TO FAILED...
+        Debug.Log("[GO TO PLAYER DESTINATION ACTION] => RUNNING");
         _state = NodeState.RUNNING;
         return _state; 
     }
+    #endregion
     /*GO TO DESTINATION*/
 }

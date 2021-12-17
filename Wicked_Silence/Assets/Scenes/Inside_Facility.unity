@@ -439,12 +439,13 @@ GameObject:
   - component: {fileID: 85790538}
   - component: {fileID: 85790537}
   - component: {fileID: 85790536}
+  - component: {fileID: 85790540}
   m_Layer: 6
   m_Name: Below_Obstacle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &85790536
 BoxCollider:
@@ -522,6 +523,22 @@ Transform:
   m_Father: {fileID: 702082030}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &85790540
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85790535}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!43 &86277892
 Mesh:
   m_ObjectHideFlags: 0
@@ -698,12 +715,13 @@ GameObject:
   - component: {fileID: 138793644}
   - component: {fileID: 138793643}
   - component: {fileID: 138793642}
+  - component: {fileID: 138793646}
   m_Layer: 6
   m_Name: Below_Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &138793642
 BoxCollider:
@@ -781,6 +799,22 @@ Transform:
   m_Father: {fileID: 702082030}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &138793646
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138793641}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &213792624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,9 +1648,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcf3142501a3664cb3bbcf0f28d48cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Range: 0
-  player: {fileID: 712519013}
-  minimumDistanceFromTheTarget: 4
+  m_Range: 25
+  minDistanceBetween: 50
+  minInvestigationDistance: 40
+  minCaughtPlayerDistance: 10
+  minInvestigateDBLevel: -60
+  minChaseDBLevel: -40
+  timeToWait: 10
+  minimumAttackDistance: 3
 --- !u!114 &443887638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2830,7 +2869,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-13726
+  m_Name: pb_Mesh21894
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
